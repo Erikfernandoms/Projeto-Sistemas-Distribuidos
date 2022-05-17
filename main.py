@@ -1,12 +1,12 @@
 from Processos.decantador import Decanter
-from Processos.reactor import Reactor
+from Processos.reator import Reactor
 from Processos.secador import Dryer
 from Processos.tanque_lavagem import WashTank
 from Processos.tanque import Tank
 from Utils.entrada import Input
 from Utils.logger import logging
-from Utils.manager import Manager
-from Utils.sinais import  stop_signal
+from Utils.orquestrador import Manager
+from Utils.sinais import stop_signal
 from env import SIMULATION_TIME
 import threading
 import math
@@ -22,11 +22,11 @@ input_NaOH = Input("NaOH", 0.25, 0.25, 1, 1, stop_signal)
 input_EtOH = Input("EtOH", 0.125, 0.125, 1, 1, stop_signal)
 
 '''Instanciando todos os tanques do sistema'''
-tank_oil = Tank(math.inf, "oleo", stop_signal)
-tank_naoh_etoh = Tank(math.inf, "NaOH/EtOH", stop_signal)
-tank_glycerin = Tank(math.inf, "Glicerina", stop_signal)
-tank_biodisel = Tank(math.inf, "Biodisel", stop_signal)
-tank_etoh = Tank(math.inf, "EtOH (Reaproveitado)", stop_signal)
+tank_oil = Tank(math.inf, "Tanque - oleo", stop_signal)
+tank_naoh_etoh = Tank(math.inf, "Tanque - NaOH/EtOH", stop_signal)
+tank_glycerin = Tank(math.inf, "Tanque - Glicerina", stop_signal)
+tank_biodisel = Tank(math.inf, "Tanque - Biodisel", stop_signal)
+tank_etoh = Tank(math.inf, "Tanque - EtOH (Reaproveitado)", stop_signal)
 
 '''Instanciando o reator que irá processar os produtos'''
 reactor = Reactor(math.inf, "Reator",5, stop_signal)
@@ -40,14 +40,14 @@ washing_tank_2 = WashTank(math.inf, "Lavagem 2", 0.075, stop_signal)
 washing_tank_3 = WashTank(math.inf, "Lavagem 3", 0.075, stop_signal)
 
 '''Instanciando os secadores'''
-dryer_etoh = Dryer(math.inf, "EtOH", stop_signal, 0.03, 5)
-dryer_biodisel = Dryer(math.inf, "Lavagem", stop_signal, 0.03, 5)
+dryer_etoh = Dryer(math.inf, "Secador - EtOH", stop_signal, 0.03, 5)
+dryer_biodisel = Dryer(math.inf, "Secador - Lavagem", stop_signal, 0.03, 5)
 
 '''Realizando a comunicação dentre os processos, a função manager gerencia o que entra, sai e os logs desses processos'''
-manage_oil_tank = Manager("pipe(Oleo)", tank_oil)
-manage_naoh_tank = Manager("pipe(NaOH)", tank_naoh_etoh)
-manage_etoh_tank = Manager("pipe(EtOH)", tank_naoh_etoh)
-manage_oil_reactor = Manager("pipe(Oleo)", reactor)
+manage_oil_tank = Manager("Pipe(Oleo)", tank_oil)
+manage_naoh_tank = Manager("Pipe(NaOH)", tank_naoh_etoh)
+manage_etoh_tank = Manager("Pipe(EtOH)", tank_naoh_etoh)
+manage_oil_reactor = Manager("Pipe(Oleo)", reactor)
 manage_naoh_etoh_reactor = Manager("Pipe(NaOH/EtOH)", reactor)
 manage_reactor_decanter = Manager("Pipe(NaOh/2EtOH/Oleo)", decanter)
 manage_decanter_dryer = Manager("Pipe(EtOH) decanter", dryer_etoh)
@@ -76,7 +76,6 @@ washing_tank_3.connect_pipe(manage_washing_tank_3_dryer_biodisel)
 tank_etoh.connect_pipe(manage_etoh_tank_naoh_etoh)
 dryer_etoh.connect_pipe(manage_dryer_etoh_tank)
 dryer_biodisel.connect_pipe(manage_dryer_biodisel_tank)
-
 
 '''Instanciando método de log'''
 log_thread = threading.Thread(

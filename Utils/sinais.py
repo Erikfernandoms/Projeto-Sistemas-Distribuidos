@@ -1,5 +1,3 @@
-import imp
-
 
 import threading
 import signal
@@ -11,7 +9,7 @@ def stop_signal():
     global stop_variable, stop_lock
     with stop_lock: 
         return stop_variable
-def stop_handler(num, stack):
+def stop_orchestrator(num, stack):
     global stop_variable
     stop_variable = True
-signal.signal(signal.SIGINT, stop_handler)
+signal.signal(signal.SIGINT, stop_orchestrator)

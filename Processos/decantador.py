@@ -12,8 +12,10 @@ class Decanter(Tank):
 
     def connect_glycerin_pipe(self, pipe):
         self.glycerin_pipe = pipe
+
     def connect_etoh_pipe(self, pipe):
         self.etoh_pipe = pipe
+        
     def connect_wash_pipe(self, pipe):
         self.wash_pipe = pipe
 

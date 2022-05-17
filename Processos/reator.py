@@ -86,7 +86,7 @@ class Reactor(Tank):
 
     def __str__(self):
         with self.tanklock:
-            products_string = ' / '.join(["{:.2f} ({})".format(amount, product_name).ljust(20, ' ') for product_name, amount in self.products.items()])
-            status_string = "{:<30} | {:>10} | {:>10.2f} | {:<6} | ".format(self.name, self.capacity, self.level, self.cicles)
+            products_string = ' e '.join(["{:.2f} ({})".format(amount, product_name).ljust(5, ' ') for product_name, amount in self.products.items()])
+            status_string = "{:<30} | {:>10.2f} | {:<6} | ".format(self.name, self.level, self.cicles)
             status_string += products_string
         return status_string
