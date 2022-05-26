@@ -15,4 +15,5 @@ Para executar este projeto, basta executar o arquivo main.py.
 # Integrantes
 
 Erik Fernando Mendes Silva RA: 22.119.074-7
+
 Bruno Augusto Jovenasso RA: 22.119.020-0
