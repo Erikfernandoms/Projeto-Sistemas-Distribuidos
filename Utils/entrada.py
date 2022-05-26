@@ -42,3 +42,5 @@ class Input:
         with self.inputlock:
             log = self.name.ljust(20, ' ')
             return "{:<20} | {:<25.2f} | {:<6}".format(self.name, self.total_input, self.cicles)
+
+

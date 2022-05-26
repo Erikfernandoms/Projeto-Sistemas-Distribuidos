@@ -46,8 +46,8 @@ class Dryer(Tank):
             for qtt, product in self.content:
                 try: products[product] += qtt
                 except: products[product] = qtt
-            products = "{:<17}".format(' e '.join(["{:.2f} ({})".format(amount, product_name).ljust(5, ' ') for product_name, amount in products.items()]))
+            products = "{:<19}".format(' e '.join(["{:.2f} ({})".format(amount, product_name).ljust(5, ' ') for product_name, amount in products.items()]))
             drying_string = " | {:.2f} L ({:.2f} segs)".format(self.drying_liters, self.drying_time)
-            status_string = "{:<30} | {:>10.2f} | ".format(self.name, self.level)
+            status_string = "{:<30} | ".format(self.name)
             status_string += products + drying_string
         return status_string

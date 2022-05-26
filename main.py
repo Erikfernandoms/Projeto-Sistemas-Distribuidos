@@ -5,21 +5,20 @@ from Processos.tanque_lavagem import WashTank
 from Processos.tanque import Tank
 from Utils.entrada import Input
 from Utils.logger import logging
-from Utils.orquestrador import Manager
+from Utils.gerenciador import Manager
 from Utils.sinais import stop_signal
-from env import SIMULATION_TIME
+from env import *
 import threading
 import math
-import time
 
 
 threads = []
 
 
 '''Realizando a inserção dos produtos Oleo, NaOh, EtOH'''
-input_oil = Input("Oleo", 1, 2, 0, 10, stop_signal)
-input_NaOH = Input("NaOH", 0.25, 0.25, 1, 1, stop_signal)
-input_EtOH = Input("EtOH", 0.125, 0.125, 1, 1, stop_signal)
+input_oil = Input("Oleo", MIN_QTD_OLEO, MAX_QTD_OLEO, MIN_TEMPO_OLEO, MAX_TEMPO_OLEO, stop_signal)
+input_NaOH = Input("NaOH", MIN_QTD_NAOH, MAX_QTD_NAOH, MIN_TEMPO_NAOH, MAX_TEMPO_NAOH, stop_signal)
+input_EtOH = Input("EtOH", MIN_QTD_ETOH, MAX_QTD_ETOH, MIN_TEMPO_ETOH, MAX_TEMPO_ETOH, stop_signal)
 
 '''Instanciando todos os tanques do sistema'''
 tank_oil = Tank(math.inf, "Tanque - oleo", stop_signal)
@@ -29,7 +28,7 @@ tank_biodisel = Tank(math.inf, "Tanque - Biodisel", stop_signal)
 tank_etoh = Tank(math.inf, "Tanque - EtOH (Reaproveitado)", stop_signal)
 
 '''Instanciando o reator que irá processar os produtos'''
-reactor = Reactor(math.inf, "Reator",5, stop_signal)
+reactor = Reactor(math.inf, "Reator", 5, stop_signal)
 
 '''Instanciando o decantador que irá processar os produtos'''
 decanter = Decanter(10, "Decantador", stop_signal)
@@ -107,8 +106,6 @@ threads.append(dryer_etoh.start())
 threads.append(tank_etoh.start())
 threads.append(log_thread.start())
 
-time.sleep(SIMULATION_TIME)
-stop_variable = True
 
 for thread in threads:
     if thread: thread.join()

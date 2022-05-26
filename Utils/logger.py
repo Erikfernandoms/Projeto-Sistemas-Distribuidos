@@ -8,7 +8,7 @@ def logging(stop_signal, **componentes):
         os.system('cls' if os.name == 'nt' else 'clear')
         
         '''Reatores'''
-        print("{:^30} | {:^10} | {:^6} | Produtos".format("Processo", "Nível", "Ciclos"))
+        print("{:^30} | {:^10} | {:^6} | Produtos".format("Processos", "Litros", "Ciclos"))
         for reatores in componentes.get('reactors', []):
             print(reatores)
 
