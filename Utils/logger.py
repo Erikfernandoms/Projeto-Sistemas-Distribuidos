@@ -24,5 +24,11 @@ def logging(stop_signal, **componentes):
         for tanque in componentes.get('tanks', []):
             print(tanque)
 
+        print()
+        print("{:^30} | {:^10} | {:^10} | {:^6} | Produtos".format("Processos", "Litros", "Perda", "Ciclos"))
+        '''Lavagem'''
+        for washtank in componentes.get('washtanks', []):
+            print(washtank)
+
        
         time.sleep(0.5)

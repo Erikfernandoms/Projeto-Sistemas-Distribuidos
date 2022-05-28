@@ -86,8 +86,8 @@ log_thread = threading.Thread(
             'dryers': [dryer_etoh, dryer_biodisel],
             'reactors': [reactor],
             'decanters': [decanter],
-            'tanks': [tank_oil, tank_naoh_etoh, tank_glycerin, tank_etoh, 
-                      washing_tank_1, washing_tank_2, washing_tank_3, tank_biodisel]
+            'tanks': [tank_oil, tank_naoh_etoh, tank_glycerin, tank_etoh, tank_biodisel],
+            'washtanks': [washing_tank_1, washing_tank_2, washing_tank_3]          
             })
 
 '''Ligando threads de cada processo'''
