@@ -9,7 +9,7 @@ Visa simular uma planta de biodiesel em processos que estarão executando em par
 Para executar este projeto, basta executar o arquivo main.py.
 
 ## Resultados depois de 1 hora de simulação
-![image](https://user-images.githubusercontent.com/70040215/170545430-62e7cf6a-2e79-4fa8-9b9c-61119199932c.png)
+![image](https://user-images.githubusercontent.com/70040215/171041317-c8480e1a-56d1-49d9-abd3-1bd7d375bde5.png)
 
 
 # Integrantes
